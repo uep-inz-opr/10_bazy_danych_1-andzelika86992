@@ -5,7 +5,7 @@ class Report_Generator:
     def __init__(self, connection, escape_string= "(%s)"):
         self.connection= connection
         self.escape_string= escape_string
-
+        self.report_text= None
 
     def generate_report(self):
         cursor= self.connection.cursor()
