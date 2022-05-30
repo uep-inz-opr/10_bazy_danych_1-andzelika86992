@@ -10,9 +10,10 @@ class Report_Generator:
     def generate_report(self):
         cursor= self.connection.cursor()
         sql= f"Select sum(duration) from polaczenia"
+        cursor.execute(sql)
         result= cursor.fetchone()[0]
         self.report_text= result
-        cursor.execute(sql)
+        
 
     def get_report(self):
         return self.report_text
@@ -28,7 +29,7 @@ if __name__ == "__main__":
                     celltower data_type INTEGER);''') 
 
 
-    with open('polaczenia_duze.csv', 'r') as fin:
+    with open(main, 'r') as fin:
         reader= csv.reader(fin, delimiter= ";")
         next(reader, None)
         rows= [x for x in reader]
