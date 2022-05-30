@@ -9,7 +9,7 @@ class Report_Generator:
 
     def generate_report(self, user_id):
         cursor= self.connection.cursor()
-        sql= f"Select sum(duration) from polaczenia where from_subscriber = {self.escape_strinf}"
+        sql= f"Select sum(duration) from polaczenia where from_subscriber = {self.escape_string}"
         args= {user_id}
         result= cursor.fetchone()[0]
         self.report_text = f"Laczny czas trwania polaczenia dla uzytkownika {user_id} to {result}"
