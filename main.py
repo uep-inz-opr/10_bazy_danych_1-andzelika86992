@@ -7,18 +7,18 @@ class Report_Generator:
         self.escape_string= escape_string
 
 
-    def generate_report(self, user_id):
+    def generate_report(self):
         cursor= self.connection.cursor()
-        sql= f"Select sum(duration) from polaczenia where from_subscriber = {self.escape_string}"
-        args= {user_id}
+        sql= f"Select sum(duration) from polaczenia"
         result= cursor.fetchone()[0]
-        self.report_text = f"Laczny czas trwania polaczenia dla uzytkownika {user_id} to {result}"
-        cursor.execute(sql, args)
+        self.report_text= result
+        cursor.execute(sql)
 
     def get_report(self):
         return self.report_text
 
 if __name__ == "__main__":
+    main= input()
     sqlite_con= sqlite3.connect(':memory:', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
     cur= sqlite_con.cursor()
     cur.execute('''CREATE TABLE polaczenia (from_subscriber data_type INTEGER, 
